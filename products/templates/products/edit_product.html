@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تغییر محصول</title>
+    <style>
+        body {
+            font-family: 'B Araz', sans-serif;
+            font-size: 20px;
+            background-color: rgb(164, 250, 157);
+            background-image: url("/static/images/leave1.png");
+            margin: 20px;
+            direction: rtl;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            color: #008c2d;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgb(255,255,255,0.5);
+            border-radius: 5%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            animation: slideIn 2s ease-in-out;
+        }
+
+        button {
+            background-color: rgba(114, 227, 106, 0.77);
+            font-family: "B Araz";
+            font-size: 25px;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 1%;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #008c2d;
+            border-radius: 5%;
+        }
+        .product-description {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px;
+            background-color: #fff;
+            border-radius: 60%; /* تغییر این مقدار برای تعیین شیب حاشیه دور منحنی */
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            border-radius: 4px;
+            transition: border-color 0.3s ease-in-out;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #17a2b8;
+        }
+    </style>
+</head>
+<body>
+    <h1>تغییر محصول</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">تغییر محصول</button>
+    </form>
+
+</body>
+</html>

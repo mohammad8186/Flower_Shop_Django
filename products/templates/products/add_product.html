@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>افزودن محصول</title>
+    <style>
+
+        body {
+            font-family: 'B Araz', sans-serif;
+            background-image: url("/static/images/leave1.png");
+            font-size: 20px;
+            background-color: rgb(164, 250, 157);
+            margin: 20px;
+            direction: rtl;
+        }
+
+        h1 {
+            color: #008c2d;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        form {
+            background-color: peru;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgb(255,255,255,0.5);
+            border-radius: 5%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            animation: slideIn 2s ease-in-out;
+        }
+
+        button {
+            font-family: 'B Araz', sans-serif;
+            font-size: 25px;
+            background-color: rgba(114, 227, 106, 0.77);
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 1%;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        button:hover {
+            background-color: #008c2d;
+            border-radius: 5%;
+        }
+
+        .product-description {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px;
+            background-color: #fff;
+            border-radius: 60%;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>افزودن محصول جدید</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">افزودن محصول</button>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,146 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- ===== CSS ===== -->
+        <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+    
+        <!-- ===== BOX ICONS ===== -->
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
+        <title>ورود-ثبت نام</title>
+    </head>
+    <body>
+        
+        <div class="login">
+            
+            <div class="login__content">
+                <div class="login__img">
+                    <img src="{% static 'images/img-login.svg' %}" alt="">
+                </div>
+
+                <div class="login__forms">
+                    <form method="post" action="{% url 'login' %}" class="login__registre" id="login-in">
+                        {% csrf_token %}
+                        <h1 class="login__title">ورود کاربران</h1>
+    
+                        <div class="login__box">
+                            <i class='bx bx-user login__icon'></i>
+                            <input type="text" placeholder="نام کاربری" class="login__input" name="username">
+                        </div>
+    
+                        <div class="login__box">
+                            <i class='bx bx-lock-alt login__icon'></i>
+                            <input type="password" placeholder="رمز عبور" class="login__input" name="password">
+                        </div>
+
+                        <a href="#" class="login__forgot">فراموشی رمز عبور؟</a>
+
+                        <button type="submit" class="login__button">ورود</button>
+
+                        <div>
+                            <span class="login__account">حساب کاربری ندارید؟</span><br>
+                            <span class="login__signin" id="sign-up">ثبت نام خریداران</span><br>
+                            <span class="login__signin" id="sign-up-seller" onclick="func()">ثبت نام فروشندگان</span><br>
+                        </div>
+                    </form>
+
+
+
+                    <form action="/account/register/" method="post" class="login__create none" id="login-up">
+                        {% csrf_token %}
+                        <h1 class="login__title">ساخت حساب کاربری</h1>
+    
+                        <div class="login__box">
+                            <i class='bx bx-user login__icon'></i>
+                            <input type="text" placeholder="نام کاربری" class="login__input" name="username">
+                            <input type="hidden" name="is_customer" value="true">
+                             <input type="hidden" name="is_seller" value="false">
+                        </div>
+    
+                        
+
+                        <div class="login__box">
+                            <i class='bx bx-lock-alt login__icon'></i>
+                            <input type="password" placeholder="رمز عبور" class="login__input" name="password1">
+                        </div>
+
+                        <div class="login__box">
+                            <i class='bx bx-lock-alt login__icon'></i>
+                            <input type="password" placeholder="تکرار رمز عبور" class="login__input" name="password2">
+                        </div>
+
+                        <button type="submit" class="login__button">ثبت نام</button>
+
+                        <div>
+                            <span class="login__account">حساب کاربری دارید؟</span>
+                            <span class="login__signup" id="sign-in">ورود</span>
+                        </div>
+
+                        <div class="login__social">
+                            <a href="#" class="login__social-icon"><i class='bx bxl-facebook' ></i></a>
+                            <a href="#" class="login__social-icon"><i class='bx bxl-twitter' ></i></a>
+                            <a href="#" class="login__social-icon"><i class='bx bxl-google' ></i></a>
+                        </div>
+
+
+                        
+                    </form>
+
+                    <form action="/account/register/" method="post" class="login__create none"  id="login-up-seller">
+                        {% csrf_token %}
+                        <h1 class="login__title">ساخت حساب کاربری فروشندگان</h1>
+    
+                        <div class="login__box">
+                            <i class='bx bx:store login__icon'></i>
+                            <input type="text" placeholder="نام کاربری" class="login__input" name="username">
+                        </div>
+    
+                        
+
+                        <div class="login__box">
+                            <i class='bx bx-lock-alt login__icon'></i>
+                            <input type="password" placeholder="رمز عبور" class="login__input" type="submit" name = "password1">
+                            <input type="hidden" name="is_seller" value="true">
+                            <input type="hidden" name="is_customer" value="false">
+                        </div>
+
+                        <div class="login__box">
+                            <i class='bx bx-lock-alt login__icon'></i>
+                            <input type="password" placeholder="تکرار رمز عبور" class="login__input" name = "password2">
+                        </div>
+                        <div class="login__box">
+                            <i class='bx bx-store-alt login__icon'></i>
+                            <input type="text" placeholder="نشانی فروشگاه" class="login__input" name = "address">
+                        </div>
+
+                        <button  class="login__button" type="submit">ثبت نام</button>
+
+                        <div>
+                            <span class="login__account">حساب کاربری دارید؟</span>
+                            <span class="login__signup" id="sign-in" onclick="func2()">ورود</span>
+                        </div>
+
+                        <div class="login__social">
+                            <a href="#" class="login__social-icon"><i class='bx bxl-facebook' ></i></a>
+                            <a href="#" class="login__social-icon"><i class='bx bxl-twitter' ></i></a>
+                            <a href="#" class="login__social-icon"><i class='bx bxl-google' ></i></a>
+                        </div>
+                    </form>
+
+
+                    
+
+                 
+
+                </div>
+            </div>
+        </div>
+
+        <!--===== MAIN JS =====-->
+         <script src="{% static 'js/main.js' %}"></script>
+    </body>
+</html>

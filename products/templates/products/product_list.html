@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>لیست محصولات - Flower Shop</title>
+    <style>
+
+        body {
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: #004115;
+            font-family: 'B Araz', sans-serif;
+            background-image: url("/static/images/WallpaperGram.IR_1562081088_z93097.jpg");
+            margin: 0;
+            padding: 0;
+            color: #333;
+            direction: rtl;
+        }
+
+
+        header {
+            background-color:  #4CAF50;
+            padding: 20px;
+            text-align: center;
+            color: #004115;
+        }
+
+
+        nav {
+            color: #004115;
+            background-color: #095e26;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #004115;
+            background-color: #b1ffa9;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #FFFFFF;
+        }
+
+
+        h1 {
+            color: white;
+            font-size: 2em;
+            margin-bottom: 0;
+        }
+
+        .site-name {
+            font-size: 1.5em;
+            margin-top: 0;
+        }
+
+        a{
+            background-color: #31ad3b;
+            font-family: 'B Araz', sans-serif;
+            font-weight: bold;
+            color: #23004D;
+            border-color: #31ad3b;
+            cursor: pointer;
+
+
+        }
+        a:hover{
+            color: #F2F2F2;
+            background-color: #008c2d;
+        }
+
+
+        .product {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px;
+            background-color: #ffffff;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        }
+
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+
+        img {
+            max-width: 300px;
+            height: auto;
+            border-radius: 10px;
+        }
+
+
+        footer {
+            background-color: #004115;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+
+        body {
+            background-color: #004115;
+        }
+
+        header {
+            background-color: #4CAF50;
+        }
+
+        nav {
+            background-color: #004115;
+        }
+
+        nav a {
+            border: 1px solid #fff;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .product {
+            background-color: rgb(255, 253, 163,0.2);
+            color: #004115;
+            font-family: 'B Araz', sans-serif;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+
+        .product p {
+            padding: 10px;
+            background-color: rgb(173, 246, 166,0.4);
+            border-radius: 20px;
+        }
+           .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .product {
+            flex: 1 0 21%;
+            margin: 1%;
+        }
+
+         img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <p class="site-name">Flower Shop</p>
+        <h1>لیست محصولات</h1>
+    </header>
+    <nav>
+        <a href="{% url 'logout' %}">خروج از حساب</a>
+        <a href="{% url 'product_list' %}">صفحه اصلی</a>
+        {% if request.user.is_seller %}
+            <a href="{% url 'my_product_list' %}">مدیریت محصولات</a>
+        {% endif %}
+        {% if request.user.is_seller %}
+            <a href="{% url 'add_product' %}">افزودن محصول</a>
+        {% endif %}
+    </nav>
+    <div class="product-list">
+        {% for product in products %}
+            <div class="product">
+                <h2>{{ product.name }}</h2>
+                {% if not seller_products %}
+                    <p>فروشنده: {{ product.seller.username }}</p>
+                {% endif %}
+                <p>قیمت: {{ product.price }} تومان</p>
+                <p>{{ product.description }}</p>
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                    <br>
+                {% endif %}
+                {% if seller_products %}
+                    <a href="{% url 'edit_product' product_id=product.id %}">تغییر این محصول</a>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>هیچ محصولی یافت نشد.</p>
+        {% endfor %}
+    </div>
+    <footer>
+        &copy; 2023 Flower Shop. All rights reserved.
+    </footer>
+</body>
+</html>
